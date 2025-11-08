@@ -93,6 +93,27 @@ public class Forge: @unchecked Sendable {
       function: function,
       line: line)
   }
+  
+  public static func logError(
+    _ message: String = "",
+    context: [String: any Encodable] = [:],
+    source: String? = nil,
+    fingerprint: String? = nil,
+    file: String = #file,
+    function: String = #function,
+    line: Int = #line)
+  {
+    guard let engine = guardEngine() else { return }
+    engine.log(
+      .error,
+      message: message,
+      source: source,
+      fingerprint: fingerprint,
+      context: context,
+      file: file,
+      function: function,
+      line: line)
+  }
 
   public static func logError(
     _ error: Error,
