@@ -75,7 +75,7 @@ extension APIClient {
   }
   
   func batchLog(_ entries: [LogEntry]) async throws {
-    try await dispatch(.post, to: .logs, with: LogEntry.arrayToDictionary(entries))
+    try await dispatch(.post, to: .logs, with: ["logs": LogEntry.arrayToDictionary(entries)])
   }
   
   func registerDevice(_ sdkKey: String) async {
@@ -83,7 +83,7 @@ extension APIClient {
       return
     }
     
-    var body = DeviceContext.current.toDictionary
+    var body = await DeviceContext.current.toDictionary
     body["sdk_key"] = sdkKey
     
     do {
@@ -131,7 +131,7 @@ extension APIClient {
   private enum Endpoint: String {
     private static let baseUrl = "http://localhost:4000"
 
-    case registerDevice = "/sdk/register_device"
+    case registerDevice = "/sdk/new_device"
     case log = "/sdk/api/log"
     case logs = "/sdk/api/logs"
 

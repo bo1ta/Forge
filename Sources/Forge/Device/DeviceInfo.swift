@@ -20,6 +20,7 @@ struct DeviceInfo {
   let osVersion: String
   let platform: String
 
+  @MainActor
   static var current: DeviceInfo {
     #if os(macOS)
     return DeviceInfo(model: "Mac", osVersion: ProcessInfo.processInfo.operatingSystemVersionString, platform: "macos")

@@ -9,6 +9,7 @@ struct DeviceContext {
   let device: DeviceInfo
   let app: AppInfo
 
+  @MainActor
   static var current: DeviceContext {
     DeviceContext(device: DeviceInfo.current, app: AppInfo.current)
   }

@@ -25,12 +25,12 @@ extension EncodableModel {
     try? JSONHelper.encoder.encode(self)
   }
 
-  static func arrayToDictionary(_ array: [Self]) -> [String: Any]? {
+  static func arrayToDictionary(_ array: [Self]) -> [[String: Any]]? {
     guard let data = try? JSONHelper.encoder.encode(array) else {
       return nil
     }
 
-    guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+    guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String: Any]] else {
       return nil
     }
 

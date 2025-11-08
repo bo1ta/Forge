@@ -8,7 +8,7 @@
 import Foundation
 import os
 
-class Forge: @unchecked Sendable {
+public class Forge: @unchecked Sendable {
   private static let instance = Forge()
   private var engine: ForgeEngine?
   private let initLock = OSAllocatedUnfairLock(initialState: ())
